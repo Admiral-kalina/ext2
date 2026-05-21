@@ -70,7 +70,7 @@ const script = async () => {
         typeOfDrive: document.querySelectorAll('#waypoint-trigger .data-list--details')[0]?.children[5]?.children[1]?.innerText || '',
         vehicleType: document.querySelectorAll('#waypoint-trigger .data-list--details')[0]?.children[1]?.children[1]?.innerText || '',
         odometer: Array.from(document.querySelectorAll("span.data-list__label"))?.find(el => el.textContent.trim() === "Odometer:")?.nextElementSibling?.innerText || document.querySelectorAll('.data-list--details')[9]?.children[8]?.children[1]?.innerText || document.querySelectorAll('.data-list--details')[9]?.children[9]?.children[1]?.innerText || document.querySelectorAll('.data-list--details')[9]?.children[10]?.children[1]?.innerText || '',
-        carState: Array.from(document.querySelectorAll("span.data-list__label"))?.find(el => el.textContent.trim() === "Primary Damage:")?.nextElementSibling?.nextElementSibling?.innerText?.trim() || Array.from(document.querySelectorAll("span.data-list__label"))?.find(el => el.textContent.trim() === "Secondary Damage:")?.nextElementSibling?.innerText || document.querySelectorAll('.data-list--details')[9]?.children[6]?.children[2]?.innerText.trim() || document.querySelectorAll('.data-list--details')[9]?.children[7]?.children[2]?.children[0]?.innerText.replace(/\s+/g, '') || document.querySelectorAll('.data-list--details')[9]?.children[8]?.children[2]?.innerText.trim() || '',
+        carState: document.querySelector('#startcodeengine_image')?.innerText?.trim() || document.querySelector('#startcodeengine_novideo')?.innerText?.trim() || '',
         transmissionType: document.querySelectorAll('#waypoint-trigger .data-list--details')[0]?.children[4]?.children[1]?.innerText || '',
         carName: document.querySelectorAll('.vehicle-header .heading-2')[0]?.innerText || '',
         bodyType: Array.from(document.querySelectorAll("span.data-list__label"))?.find(el => el.textContent.trim() === "Vehicle Class:")?.nextElementSibling.innerText || document.querySelectorAll('#waypoint-trigger .data-list--details')[0]?.children[2]?.children[1]?.innerText || '',
@@ -216,6 +216,7 @@ console.log("ERR  ,", error)
       vehicleType: byLabel?.Vehicletype?.value || document.querySelector('.cprt-panel-details-row')?.children[2]?.children[0]?.children[1]?.innerHTML || 'Sedan',
       odometer: byLabel?.Odometer?.value || '',
       transmissionType: byLabel?.Transmission?.value || '',
+      typeOfDrive: byLabel?.Drivetrain?.value || byLabel?.Drive?.value || '',
       carName:  document.querySelector('h1')?.innerHTML || '',
       bodyType: byLabel?.Bodystyle?.value || '' || '',
       location: document.querySelector('[data-uname="lotdetailSaleinformationlocationvalue"]')?.innerText || document.querySelector('#locationInfoButton')?.innerText || '',
@@ -275,7 +276,7 @@ console.log("ERR  ,", error)
       bodyStyle = siteData.vehicleType.toLowerCase();
 
       transmitionType = siteData.transmissionType;
-      typeOfDrive = siteData.transmissionType;
+      typeOfDrive = siteData.typeOfDrive || siteData.transmissionType;
 
       console.log("CAR YEAR siteData.carName,", siteData.carName)
       console.log("2 CAR YEAR siteData.carName,", )
