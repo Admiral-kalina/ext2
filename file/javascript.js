@@ -317,7 +317,7 @@ console.log("ERR  ,", error)
 
   const updatedYear = currentDate.getFullYear()
   console.log("EXT JSON TYPE", bodyStyle)
-  raznica_god = (updatedYear - carYear - 1) || 1
+  raznica_god = Math.max(updatedYear - carYear - 1, 1)
   if(!bodyStyle){
     vehicleTypePrice = 0;
   }else if (LIST_OF_BODY_CLASS_2.includes(bodyStyle.toLowerCase())) {
