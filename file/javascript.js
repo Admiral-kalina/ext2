@@ -223,7 +223,7 @@ console.log("ERR  ,", error)
       engineVolume: byLabel?.Enginetype?.value || '',
       fuelType: byLabel?.Fuel?.value || '',
       carState: byLabel?.Primarydamage?.value || document.querySelector('.lot-highlight')?.children[0]?.innerText|| '',
-      highlights: '',
+      highlights: byLabel?.Highlights?.value || '',
     }
 
     console.log("siteData ,   ", siteData)
