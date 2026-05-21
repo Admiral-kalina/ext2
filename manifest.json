@@ -1,0 +1,67 @@
+{
+	"manifest_version": 3,
+	"name": "USCA просчет авто из США",
+	"version": "2.6",
+	"description": "Быстрый и удобный просчет доставки и таможни автомобиля из США в Украину прямо на странице лота Copart и IAAI",
+	"action": {
+		"default_popup": "background.html",
+		"default_icon": {
+			"128": "img/usca-128.png",
+			"48": "img/usca-48.png",
+			"32": "img/usca-32.png",
+			"16": "img/usca-16.png"
+		}
+	},
+	"icons": {
+		"128": "img/usca-128.png",
+		"48": "img/usca-48.png",
+		"32": "img/usca-32.png",
+		"16": "img/usca-16.png"
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.copart.com/*",
+				"https://www.iaai.com/*",
+				"https://www.copart.ca/*"
+			],
+			"js": [
+				"file/library.js",
+				"file/fetch/fetch.js",
+				"file/helpers/helpers.js",
+				"file/javascript.js"
+			],
+			"css": [
+				"file/style.css"
+			],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"file/html-copart.tpl",
+				"file/html-iaai.tpl"
+			],
+			"matches": [
+				"https://www.copart.com/*",
+				"https://www.iaai.com/*",
+				"https://www.copart.ca/*"
+			]
+		}
+	],
+	"host_permissions": [
+		"https://usca.com.ua/*",
+		"https://api.frankfurter.app/*"
+	],
+	"permissions": [
+		"storage",
+		"scripting"
+	],
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self';"
+	}
+}
